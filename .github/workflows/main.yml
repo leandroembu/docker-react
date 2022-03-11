@@ -20,16 +20,15 @@ jobs:
           justlogin: true
 
       - name: "Login to heroku registry"
-        - name: Heroku login credentials
-          run: |
-            cat > ~/.netrc <<EOF
-              machine api.heroku.com
-                login $HEROKU_EMAIL
-                password $HEROKU_API_KEY
-              machine git.heroku.com
-                login $HEROKU_EMAIL
-                password $HEROKU_API_KEY
-            EOF
+        run: |
+          cat > ~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+          EOF
 
       - name: "Build and push to heroku registry"
         run: heroku container:push web --app leandroramos-docker-react
