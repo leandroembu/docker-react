@@ -34,6 +34,9 @@ jobs:
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
 
       - name: "Build and push to heroku registry"
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: heroku container:push web --app leandroramos-docker-react
 
       - name: "Releases the container"
